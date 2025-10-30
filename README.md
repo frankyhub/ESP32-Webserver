@@ -5,10 +5,10 @@
 # Objekterkennung mit yolov5
 
 
-|[:skull:ISSUE](https://github.com/frankyhub/01_ESP32-Webserver/issues?q=is%3Aissue)|[:speech_balloon: Forum /Discussion](https://github.com/frankyhub/01_ESP32-Webserver/discussions)|[:grey_question:WiKi](https://github.com/frankyhub/01_ESP32-Webserver/blob/main/wiki.md)|
+|[:skull:ISSUE](https://github.com/frankyhub/ESP32-Webserver/issues?q=is%3Aissue)|[:speech_balloon: Forum /Discussion](https://github.com/frankyhub/ESP32-Webserver/discussions)|[:grey_question:WiKi](https://github.com/frankyhub/ESP32-Webserver/blob/main/wiki.md)|
 |--|--|--|
 | | | | 
-| <a href="https://github.com/frankyhub/01_ESP32-Webserver/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" />| <a href="https://github.com/frankyhub/01_ESP32-Webserver/graphs/traffic"><img alt="ViewCount" src="https://views.whatilearened.today/views/github/frankyhub/github-clone-count-badge.svg">  |<a href="https://github.com/frankyhub?tab=stars"> ![GitHub User's stars](https://img.shields.io/github/stars/frankyhub)|
+| <a href="https://github.com/frankyhub/ESP32-Webserver/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" />| <a href="https://github.com/frankyhub/ESP32-Webserver/graphs/traffic"><img alt="ViewCount" src="https://views.whatilearened.today/views/github/frankyhub/github-clone-count-badge.svg">  |<a href="https://github.com/frankyhub?tab=stars"> ![GitHub User's stars](https://img.shields.io/github/stars/frankyhub)|
 
 
 ![Bild](pic/webserver.png)
