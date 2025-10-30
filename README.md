@@ -177,7 +177,7 @@ void loop() {
         }
       }
     }
-    // Clear the header variable
+    // Die header variable löschen
     header = "";
     client.stop();
     Serial.println("Client getrennt.\n");
