@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Objekterkennung mit yolov5
+# ESP32 Webserver
 
 
 |[:skull:ISSUE](https://github.com/frankyhub/ESP32-Webserver/issues?q=is%3Aissue)|[:speech_balloon: Forum /Discussion](https://github.com/frankyhub/ESP32-Webserver/discussions)|[:grey_question:WiKi](https://github.com/frankyhub/ESP32-Webserver/wiki)|
