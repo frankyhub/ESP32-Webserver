@@ -224,7 +224,7 @@ void loop() {
 #include <WiFi.h>
 
 // WLAN-Daten
-const char* ssid = "xxx;
+const char* ssid = "xxx";
 const char* password = "xxx";
 
 WiFiServer server(80);
