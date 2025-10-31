@@ -472,8 +472,8 @@ void loop() {
 #include <WiFi.h>
 
 // WLAN-Daten
-const char* ssid = "Oberlab2G";
-const char* password = "UrlaubinBALREBO#!1";
+const char* ssid = "xxx;
+const char* password = "xxx";
 
 WiFiServer server(80);
 String header;
