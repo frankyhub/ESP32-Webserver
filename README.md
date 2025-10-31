@@ -18,7 +18,8 @@
 
 ## Story
 Dieses Repo beschreibt einen Websever mit einem ESP32vn IoT UNO. Der Webserver steuert 2 GPIOs. Im Testmodus wird die interne LED GPIO 2 und GPIO 27 angesteuert. Vor dem Programmtest muss noch die SSID und das Passwort für die WLAN-Verbindung eingetragen werden. Das Programm wurde anschließen auf 6 GPIOs erweitert. 
-Ein Webserver mit 2 GPIOs und einem ESP8266 MOD12-F ist am Ende des Repos.
+
+Ein Webserver mit 2 GPIOs und einem ESP8266 NodeMCU V3 ist am Ende des Repos.
 
 
 ```CPP
@@ -187,6 +188,9 @@ void loop() {
 
 
 ```
+
+---
+---
 
 ## Webserver Erweiterung
 
@@ -446,6 +450,10 @@ void loop() {
 }
 
 ```
+
+---
+---
+
 ## Programm für das Oberlab-Shield optimiert
 
 ```cpp
@@ -690,6 +698,9 @@ void loop() {
 }
 ```
 
+---
+---
+
 ## ESP8266 Webserver mir 2 GPIOs
 
 ```CPP
@@ -859,6 +870,10 @@ void loop() {
   }
 }
 ```
+
+## ESP8266 NodeMCU V3 Pinout
+
+
 ![Bild](pic/ESP8266_Pinout.png)
 
 
