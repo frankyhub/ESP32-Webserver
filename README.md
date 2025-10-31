@@ -688,6 +688,180 @@ void loop() {
   }
 }
 ```
+
+## ESP8266 Webserver mir 2 GPIOs
+```
+/*************************************************************************************************
+                                      PROGRAMMINFO
+**************************************************************************************************
+Funktion: ESP8266 Web Server mit Schiebeschaltern
+**************************************************************************************************
+Version: 31.10.2025
+**************************************************************************************************
+ESP8286 Boards (3.8.12): 
+LOLIN(WEMOS) D1 R2 & mini
+ESPino (ESP12 Module) 
+**************************************************************************************************
+Libraries:
+C:\Users\User\Documents\Arduino\libraries
+**************************************************************************************************
+C++ Arduino IDE V1.8.19
+**************************************************************************************************
+Einstellungen:
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
+**************************************************************************************************/
+
+// WLAN-Bibliothek laden
+#include <ESP8266WiFi.h>
+
+// WLAN-Zugangsdaten
+const char* ssid     = "xxx";
+const char* password = "xxx";
+
+// Webserver-Portnummer auf 80 setzen
+WiFiServer server(80);
+
+// Variable zum Speichern der HTTP-Anfrage
+String header;
+
+// Hilfsvariablen zum Speichern des aktuellen Ausgangszustands
+String output2State = "off";
+String output4State = "off";
+
+// Ausgangsvariablen den GPIO-Pins zuweisen
+const int output2 = 2;
+const int output4 = 4;
+
+// Aktuelle Zeit
+unsigned long currentTime = millis();
+// Vorherige Zeit
+unsigned long previousTime = 0; 
+// Timeout-Zeit in Millisekunden definieren (Beispiel: 2000 ms = 2 s)
+const long timeoutTime = 2000;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(output2, OUTPUT);
+  pinMode(output4, OUTPUT);
+  digitalWrite(output2, LOW);
+  digitalWrite(output4, LOW);
+
+  Serial.print("Verbinde mit ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WLAN verbunden.");
+  Serial.println("IP-Adresse: ");
+  Serial.println(WiFi.localIP());
+  server.begin();
+}
+
+void loop() {
+  WiFiClient client = server.available();
+
+  if (client) {
+    Serial.println("  "); //Neuer Client
+    String currentLine = "";
+    currentTime = millis();
+    previousTime = currentTime;
+
+    while (client.connected() && currentTime - previousTime <= timeoutTime) {
+      currentTime = millis();
+      if (client.available()) {
+        char c = client.read();
+        Serial.write(c);
+        header += c;
+
+        if (c == '\n') {
+          if (currentLine.length() == 0) {
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
+            client.println("Connection: close");
+            client.println();
+
+            // Schaltet die GPIOs ein und aus
+            if (header.indexOf("GET /5/on") >= 0) {
+              Serial.println("GPIO 2 aus");
+              output2State = "on";
+              digitalWrite(output2, HIGH);
+            } else if (header.indexOf("GET /5/off") >= 0) {
+              Serial.println("GPIO 2 an");
+              output2State = "off";
+              digitalWrite(output2, LOW);
+            } else if (header.indexOf("GET /4/on") >= 0) {
+              Serial.println("GPIO 4 aus");
+              output4State = "on";
+              digitalWrite(output4, HIGH);
+            } else if (header.indexOf("GET /4/off") >= 0) {
+              Serial.println("GPIO 4 an");
+              output4State = "off";
+              digitalWrite(output4, LOW); 
+            }
+
+            // HTML-Webseite anzeigen
+            client.println("<!DOCTYPE html><html>");
+            client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+            client.println("<link rel=\"icon\" href=\"data:,\">");
+            client.println("<style>");
+            client.println("html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
+            client.println(".switch { position: relative; display: inline-block; width: 60px; height: 34px;}");
+            client.println(".switch input { display: none;}");
+            client.println(".slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;"
+                           "background-color: #ccc; transition: .4s; border-radius: 34px;}");
+            client.println(".slider:before { position: absolute; content: ''; height: 26px; width: 26px; left: 4px; bottom: 4px;"
+                           "background-color: white; transition: .4s; border-radius: 50%;}");
+            client.println("input:checked + .slider { background-color: #fb0052;}");
+            client.println("input:checked + .slider:before { transform: translateX(26px);}");
+            client.println("</style></head>");
+
+            client.println("<body><h1>ESP8266 Webserver</h1>");
+
+            // GPIO 2 Schalter
+            //client.println("<p>GPIO 2 - Zustand: " + output2State + "</p>");
+            client.println("<p>GPIO 2</p>");
+            client.println("<label class=\"switch\">");
+            if (output2State == "off") {
+              client.println("<input type=\"checkbox\" checked onchange=\"window.location.href='/5/on'\">");
+            } else {
+              client.println("<input type=\"checkbox\" onchange=\"window.location.href='/5/off'\">");
+            }
+            client.println("<span class=\"slider\"></span></label><br><br>");
+
+            // GPIO 4 Schalter
+            //client.println("<p>GPIO 4 - Zustand: " + output4State + "</p>");
+            client.println("<p>GPIO 4</p>");            
+            client.println("<label class=\"switch\">");
+            if (output4State == "off") {
+              client.println("<input type=\"checkbox\" checked onchange=\"window.location.href='/4/on'\">");
+            } else {
+              client.println("<input type=\"checkbox\" onchange=\"window.location.href='/4/off'\">");
+            }
+            client.println("<span class=\"slider\"></span></label>");
+
+            client.println("</body></html>");
+            client.println();
+
+            break;
+          } else {
+            currentLine = "";
+          }
+        } else if (c != '\r') {
+          currentLine += c;
+        }
+      }
+    }
+    header = "";
+    client.stop();
+    //Serial.println("Client getrennt.");
+    Serial.println("");
+  }
+}
+```
 ---
 
 <div style="position:absolute; left:2cm; ">   
