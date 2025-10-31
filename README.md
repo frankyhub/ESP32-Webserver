@@ -859,6 +859,9 @@ void loop() {
   }
 }
 ```
+![Bild](pic/ESP8266_Pinout.png)
+
+
 ---
 
 <div style="position:absolute; left:2cm; ">   
