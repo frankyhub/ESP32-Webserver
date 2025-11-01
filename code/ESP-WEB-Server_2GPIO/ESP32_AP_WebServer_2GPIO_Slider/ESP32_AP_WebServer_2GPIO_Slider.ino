@@ -1,0 +1,164 @@
+/*************************************************************************************************
+                                      PROGRAMMINFO
+**************************************************************************************************
+  Funktion: ESP32 AP WEB Server 2 GPOI 2 Slider //A00
+
+  AP_WebServer in den WLAN EInstellungen aufrufen
+
+  192.168.4.1 im Browser aufrufen  
+  
+**************************************************************************************************
+  Version: 01.11.2025
+---------------------------------------------------------------      
+*************************************************************************************************
+  Board: ESP32vn IoT UNO
+**************************************************************************************************
+  C++ Arduino IDE V1.8.19
+**************************************************************************************************
+  Einstellungen:
+  https://dl.espressif.com/dl/package_esp32_index.json
+  http://dan.drown.org/stm32duino/package_STM32duino_index.json
+  https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
+
+
+  ### Electronik Verbindungen
+  GPIO 26 //2
+  GPIO 27
+
+ **************************************************************************************************/
+//Wi-Fi Library https://github.com/arduino-libraries/WiFi
+#include <WiFi.h>
+
+const char* ssid     = "AP_WebServer"; //Mit diesen Namen erscheint der ESP32 in deiner WLAN-Liste
+const char* password = ""; //Kein Passwort
+
+WiFiServer server(80);
+
+String header;
+
+String output26State = "off";
+String output27State = "off";
+
+const int output26 = 2; //2 = Interne LED
+const int output27 = 27;
+
+unsigned long currentTime = millis();
+unsigned long previousTime = 0;
+const long timeoutTime = 2000;
+
+void setup() {
+  Serial.begin(115200);
+  // Definiere Ausgänge
+  pinMode(output26, OUTPUT);
+  pinMode(output27, OUTPUT);
+  // Setzt Ausgänge auf LOW
+  digitalWrite(output26, LOW);
+  digitalWrite(output27, LOW);
+
+  // Wi-Fi verbinden
+  Serial.print("Access Point ist aktiviert");
+
+  WiFi.softAP(ssid, password);
+
+  IPAddress IP = WiFi.softAPIP();
+  Serial.print("AP IP address: ");
+  Serial.println(IP);
+  
+  server.begin();
+}
+
+void loop(){
+  WiFiClient client = server.available();   // eingehende Clients
+
+  if (client) {
+    currentTime = millis();
+    previousTime = currentTime;
+    Serial.println("Neuer Client verbunden.");
+    String currentLine = "";
+    header = "";
+
+    while (client.connected() && currentTime - previousTime <= timeoutTime) {
+      currentTime = millis();
+      if (client.available()) {
+        char c = client.read();
+        header += c;
+        if (c == '\n') {
+          if (currentLine.length() == 0) {
+            // ---- HTTP-Antwort ----
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-type:text/html");
+            client.println("Connection: close");
+            client.println();
+
+            // ---- Steuerlogik ----
+            if (header.indexOf("GET /26/on") >= 0) {
+              output26State = "on"; digitalWrite(output26, HIGH);
+              Serial.println("GPIO 26 an");
+            } else if (header.indexOf("GET /26/off") >= 0) {
+              output26State = "off"; digitalWrite(output26, LOW);
+              Serial.println("GPIO 26 aus");
+            } else if (header.indexOf("GET /27/on") >= 0) {
+              output27State = "on"; digitalWrite(output27, HIGH);
+              Serial.println("GPIO 27 an");
+            } else if (header.indexOf("GET /27/off") >= 0) {
+              output27State = "off"; digitalWrite(output27, LOW);
+              Serial.println("GPIO 27 aus");
+            }
+
+            // ---- HTML-Seite ----
+            client.println("<!DOCTYPE html><html><head>");
+            client.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+            client.println("<style>");
+            client.println("html{font-family:Helvetica;text-align:center;}");
+            client.println(".switch{position:relative;display:inline-block;width:80px;height:44px;}");
+            client.println(".switch input{display:none;}");
+            client.println(".slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;"
+                           "background-color:#ccc;transition:.4s;border-radius:34px;}");
+            client.println(".slider:before{position:absolute;content:'';height:36px;width:36px;"
+                           "left:4px;bottom:4px;background:white;transition:.4s;border-radius:50%;}");
+            client.println("input:checked + .slider{background-color:#4CAF50;}");
+            client.println("input:checked + .slider:before{transform:translateX(36px);}");
+            client.println("</style></head><body>");
+            client.println("<h1>ESP32 AP Webserver</h1>");
+
+            // GPIO 26
+            client.println("<p>Interne LED"  "</p>");
+            client.println("<label class=\"switch\">");
+            client.print("<input type=\"checkbox\" id=\"gpio26\" ");
+            if (output26State == "on") client.print("checked");
+            client.println(" onchange=\"toggle(this,26)\">");
+            client.println("<span class=\"slider\"></span></label><br><br>");
+
+            // GPIO 27
+            client.println("<p>GPIO 27"  "</p>");
+            client.println("<label class=\"switch\">");
+            client.print("<input type=\"checkbox\" id=\"gpio27\" ");
+            if (output27State == "on") client.print("checked");
+            client.println(" onchange=\"toggle(this,27)\">");
+            client.println("<span class=\"slider\"></span></label>");
+
+            // ---- JavaScript ----
+            client.println("<script>");
+            client.println("function toggle(el,pin){");
+            client.println("var state = el.checked ? 'on' : 'off';");
+            client.println("fetch('/'+pin+'/'+state);");
+            client.println("}");
+            client.println("</script>");
+
+            client.println("</body></html>");
+            client.println();
+            break;
+          } else {
+            currentLine = "";
+          }
+        } else if (c != '\r') {
+          currentLine += c;
+        }
+      }
+    }
+    // Die header variable löschen
+    header = "";
+    client.stop();
+    Serial.println("Client getrennt.\n");
+  }
+}
