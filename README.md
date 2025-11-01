@@ -19,6 +19,8 @@
 ## Story
 Dieses Repo beschreibt einen Websever mit einem ESP32vn IoT UNO. Der Webserver steuert 2 GPIOs. Im Testmodus wird die interne LED GPIO 2 und GPIO 27 angesteuert. Vor dem Programmtest muss noch die SSID und das Passwort für die WLAN-Verbindung eingetragen werden. Das Programm wurde anschließen auf 6 GPIOs erweitert. 
 
+Es steht auch ein Programm für einen Access Point Webserver (192.168.4.1) mit 2 GPIOs zur Verfügung.
+
 Ein Webserver mit 2 GPIOs und einem ESP8266 NodeMCU V3 ist am Ende des Repos.
 
 ---
