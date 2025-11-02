@@ -849,7 +849,7 @@ void loop(){
             client.println("<h1>ESP32 AP Webserver</h1>");
 
             // GPIO 2
-            client.println("<p>GPIO 2 Interne LED"  "</p>");
+            client.println("<p>GPIO 2 int.LED"  "</p>");
             client.println("<label class=\"switch\">");
             client.print("<input type=\"checkbox\" id=\"gpio26\" ");
             if (output26State == "on") client.print("checked");
