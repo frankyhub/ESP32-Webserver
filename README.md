@@ -202,7 +202,11 @@ void loop() {
 
 ## Webserver Erweiterung
 
+<div align="center">
+
 ![Bild](pic/webserver2.png)
+
+</div>
 
 ```CPP
 /*************************************************************************************************
