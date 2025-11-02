@@ -895,6 +895,12 @@ void loop(){
 
 ## ESP8266 Webserver für 2 GPIOs
 
+<div align="center">
+
+![Bild](pic/webserver3.png)
+
+</div>
+
 ```CPP
 /*************************************************************************************************
                                       PROGRAMMINFO
@@ -1012,13 +1018,13 @@ void loop() {
             client.println(".switch{position:relative;display:inline-block;width:80px;height:44px;}");
             client.println(".switch input{display:none;}");
             client.println(".slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;"
-                           "background-color:#ccc;transition:.4s;border-radius:34px;}");
+                           "background-color:#00cc0c;transition:.4s;border-radius:34px;}");
             client.println(".slider:before{position:absolute;content:'';height:36px;width:36px;"
                            "left:4px;bottom:4px;background:white;transition:.4s;border-radius:50%;}");
-            client.println("input:checked + .slider{background-color:#4CAF50;}");
+            client.println("input:checked + .slider{background-color:#fb0052;}");
             client.println("input:checked + .slider:before{transform:translateX(36px);}");
             client.println("</style></head><body>");
-            client.println("<h1>KHF Webserver</h1>");
+            client.println("<h1>ESP8266 Webserver</h1>");
 
             // GPIO 2
             client.println("<p>Interne LED"  "</p>");
@@ -1061,6 +1067,7 @@ void loop() {
     Serial.println("Client getrennt.\n");
   }
 }
+
 ```
 
 ## ESP8266 NodeMCU V3 Pinout
