@@ -715,7 +715,13 @@ void loop() {
 
 ## ESP32 Access Point Webserver
 
+<div align="center">
+
 ![Bild](pic/APWebserver.JPG)
+
+</div>
+
+
 
 
 ```CPP
@@ -1059,8 +1065,12 @@ void loop() {
 
 ## ESP8266 NodeMCU V3 Pinout
 
+<div align="center">
 
 ![Bild](pic/ESP8266_Pinout.png)
+
+</div>
+
 
 
 ---
