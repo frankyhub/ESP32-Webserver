@@ -846,7 +846,7 @@ void loop(){
             client.println("input:checked + .slider{background-color:#fb0052;}");
             client.println("input:checked + .slider:before{transform:translateX(36px);}");
             client.println("</style></head><body>");
-            client.println("<h1>ESP32 Webserver</h1>");
+            client.println("<h1>ESP32 AP Webserver</h1>");
 
             // GPIO 2
             client.println("<p>GPIO 2 Interne LED"  "</p>");
