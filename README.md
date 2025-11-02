@@ -1069,6 +1069,13 @@ void loop() {
 }
 
 ```
+## ESP32 UNO D1 R32 Pinout
+
+<div align="center">
+
+![Bild](pic/esp32uno.png)
+
+</div>
 
 ## ESP8266 NodeMCU V3 Pinout
 
