@@ -61,6 +61,7 @@ GPIO 27
 const char* ssid = "xxx";
 const char* password = "xxx";
 
+
 WiFiServer server(80);
 String header;
 
@@ -143,16 +144,16 @@ void loop() {
             client.println(".switch{position:relative;display:inline-block;width:80px;height:44px;}");
             client.println(".switch input{display:none;}");
             client.println(".slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;"
-                           "background-color:#ccc;transition:.4s;border-radius:34px;}");
+                           "background-color:#00cc0c;transition:.4s;border-radius:34px;}");
             client.println(".slider:before{position:absolute;content:'';height:36px;width:36px;"
                            "left:4px;bottom:4px;background:white;transition:.4s;border-radius:50%;}");
-            client.println("input:checked + .slider{background-color:#4CAF50;}");
+            client.println("input:checked + .slider{background-color:#fb0052;}");
             client.println("input:checked + .slider:before{transform:translateX(36px);}");
             client.println("</style></head><body>");
-            client.println("<h1>KHF Webserver</h1>");
+            client.println("<h1>ESP32 Webserver</h1>");
 
-            // GPIO 26
-            client.println("<p>Interne LED"  "</p>");
+            // GPIO 2
+            client.println("<p>GPIO 2 int.LED"  "</p>");
             client.println("<label class=\"switch\">");
             client.print("<input type=\"checkbox\" id=\"gpio26\" ");
             if (output26State == "on") client.print("checked");
@@ -186,7 +187,7 @@ void loop() {
         }
       }
     }
-    // Die header variable löschen
+    // Clear the header variable
     header = "";
     client.stop();
     Serial.println("Client getrennt.\n");
