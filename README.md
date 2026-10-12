@@ -2,16 +2,15 @@
 
 <div align="center">
 
-# ESP32 Webserver
+|[:skull:ISSUE](https://github.com/frankyhub/ESP32-Webserver/issues?q=is%3Aissue)|[:speech_balloon: Forum /Discussion](https://github.com/frankyhub/ESP32-Webserver/discussions)|[:grey_question:WiKi](https://github.com/frankyhub/ESP32-Webserver/wiki)||
+|--|--|--|--|
+| | | | |
+<a href="https://github.com/frankyhub/ESP32-Webserver/issues">![GitHub issues](https://img.shields.io/github/issues/frankyhub/ESP32-Webserver)![GitHub closed issues](https://img.shields.io/github/issues-closed/frankyhub/ESP32-Webserver)|<a href="https://github.com/frankyhub/ESP32-Webserver/discussions">![GitHub Discussions](https://img.shields.io/github/discussions/frankyhub/ESP32-Webserver)|<a href="https://github.com/frankyhub/ESP32-Webserver/6eleases">![GitHub release (with filter)](https://img.shields.io/github/v/release/frankyhub/ESP32-Webserver)|![Static Badge](https://img.shields.io/badge/RepoNr.:-%2053-blue)|
+|![GitHub Created At](https://img.shields.io/github/created-at/frankyhub/ESP32-Webserver)| <a href="https://github.com/frankyhub/ESP32-Webserver/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" />| <a href="https://github.com/frankyhub/ESP32-Webserver/graphs/traffic"><img alt="ViewCount" src="https://views.whatilearened.today/views/github/frankyhub/github-clone-count-badge.svg">  |<a href="https://github.com/frankyhub?tab=stars"> ![GitHub User's stars](https://img.shields.io/github/stars/frankyhub)||
 
 
-|[:skull:ISSUE](https://github.com/frankyhub/ESP32-Webserver/issues?q=is%3Aissue)|[:speech_balloon: Forum /Discussion](https://github.com/frankyhub/ESP32-Webserver/discussions)|[:grey_question:WiKi](https://github.com/frankyhub/ESP32-Webserver/wiki)|
-|--|--|--|
-| | | | 
-| <a href="https://github.com/frankyhub/ESP32-Webserver/pulse" alt="Activity"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" />| <a href="https://github.com/frankyhub/ESP32-Webserver/graphs/traffic"><img alt="ViewCount" src="https://views.whatilearened.today/views/github/frankyhub/github-clone-count-badge.svg">  |<a href="https://github.com/frankyhub?tab=stars"> ![GitHub User's stars](https://img.shields.io/github/stars/frankyhub)|
-
-
-![Bild](pic/webserver.png)
+<img src="pic/webserver.png" width="500"> 
+<br> <br>
 
 
 </div>
@@ -204,7 +203,8 @@ void loop() {
 
 <div align="center">
 
-![Bild](pic/webserver2.png)
+<img src="pic/webserver2.png" width="500"> 
+<br> <br>
 
 </div>
 
@@ -717,7 +717,8 @@ void loop() {
 
 <div align="center">
 
-![Bild](pic/APWebserver.JPG)
+<img src="pic/APWebserver.JPG" width="500"> 
+<br> <br>
 
 </div>
 
@@ -897,7 +898,8 @@ void loop(){
 
 <div align="center">
 
-![Bild](pic/webserver3.png)
+<img src="pic/webserver3.png" width="500"> 
+<br> <br>
 
 </div>
 
@@ -1073,7 +1075,8 @@ void loop() {
 
 <div align="center">
 
-![Bild](pic/esp32uno.png)
+<img src="pic/esp32uno.png" width="500"> 
+<br> <br>
 
 </div>
 
@@ -1081,7 +1084,8 @@ void loop() {
 
 <div align="center">
 
-![Bild](pic/ESP8266_Pinout.png)
+<img src="pic/ESP8266_Pinout.png" width="500"> 
+<br> <br>
 
 </div>
 
